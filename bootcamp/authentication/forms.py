@@ -68,20 +68,22 @@ class SignUpForm(forms.ModelForm):
         widget=forms.EmailInput(attrs={'class': 'form-control'}),
         required=True,
         max_length=75)
-
+    
     class Meta:
         model = User
         exclude = ['last_login', 'date_joined']
         fields = ['username', 'email', 'password', 'confirm_password', ]
 
     def __init__(self, *args, **kwargs):
-        super(SignUpForm, self).__init__(*args, **kwargs)
+        print(args, kwargs)
+        super(SignUpForm, self).__init__(*args, **kwargs)       
         self.fields['username'].validators.append(ForbiddenUsernamesValidator)
         self.fields['username'].validators.append(InvalidUsernameValidator)
         self.fields['username'].validators.append(
             UniqueUsernameIgnoreCaseValidator)
         self.fields['email'].validators.append(UniqueEmailValidator)
         self.fields['email'].validators.append(SignupDomainValidator)
+
 
     def clean(self):
         super(SignUpForm, self).clean()

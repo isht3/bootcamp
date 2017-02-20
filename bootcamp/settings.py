@@ -11,15 +11,18 @@ SECRET_KEY = config('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = config('DEBUG', default=False, cast=bool)
-
 DATABASES = {
-    'default': dj_database_url.config(
-        default=config('DATABASE_URL')
-    )
+    'default': {
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'bootcamp',
+        'USER' : 'root',
+        'PASSWORD' : 'por.sche',
+
+    }
 }
 
-ALLOWED_HOSTS = config('ALLOWED_HOSTS', cast=Csv())
 
+ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = (

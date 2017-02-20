@@ -23,8 +23,8 @@ def signup(request):
             login(request, user)
             welcome_post = '{0} has joined the network.'.format(user.username,
                                                                 user.username)
-            feed = Feed(user=user, post=welcome_post)
-            feed.save()
+            # feed = Feed(user=user, post=welcome_post)
+            # feed.save()
             return redirect('/')
 
     else:
